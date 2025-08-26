@@ -1,0 +1,28 @@
+Data_Preparation:
+  test_size: 0.25
+  random_state: 42
+
+Train:
+  xgb_reg:
+    learning_rate: 0.2183707966120368
+    n_estimators: 265
+    max_depth: 21
+    subsample: 0.7768342594348248
+    colsample_bytree: 0.9361238823430689
+    max_features: None
+    min_child_weight: 4
+    gamma: 0.16584949312030506
+    reg_alpha: 3.1403941966322835
+    reg_lambda: 0.5735320119308795
+    n_jobs: -1
+  
+  LightGBM:
+    n_estimators: 154
+    max_depth: 27
+    learning_rate: 0.22234435854395157
+    subsample: 0.7592213724048168
+    min_child_weight: 20
+    min_split_gain: 0.004604680609280751
+    reg_lambda: 97.81002379097947
+    n_jobs: -1
+
