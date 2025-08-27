@@ -6,5 +6,7 @@ seaborn
 dagshub
 mlflow
 dvc
+dvc[s3]
+boto3
 lightgbm
 xgboost
