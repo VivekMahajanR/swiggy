@@ -8,5 +8,6 @@ mlflow
 dvc
 dvc[s3]
 boto3
+pytest
 lightgbm
 xgboost
