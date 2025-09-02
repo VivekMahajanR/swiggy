@@ -84,8 +84,8 @@ jobs:
       - name: Upload ZIP to S3
         if: success()
         run: |
-            aws s3 cp deployment.zip s3://deployementdeliverytimeprediction/deployment.zip
-            
+            aws s3 cp deployment.zip s3://deployementbucketfordeliverytimepred/deployment.zip
+                                                      
             
       # Deploy to AWS CodeDeploy using the uploaded ZIP file
       - name: Deploy to AWS CodeDeploy
@@ -97,6 +97,6 @@ jobs:
             --application-name deliverytimeprediction \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --deployment-group-name deliverytimepredictiondeploymentgroup \
-            --s3-location bucket=deliverytimepredictiondeployment,key=deployment.zip,bundleType=zip \
+            --s3-location bucket=deployementbucketfordeliverytimepred,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region ap-south-1

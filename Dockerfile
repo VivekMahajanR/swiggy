@@ -1,26 +1,33 @@
-# set the base image
-FROM python:3.12-slim
+# Build stage
+FROM python:3.12-slim as builder
 
-# install lightgbm dependency
-RUN apt-get update && apt-get install -y libgomp1
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-# set up the working directory
 WORKDIR /app
 
-# copy the requirements file
 COPY requirements-dockers.txt ./
+RUN pip install --user -r requirements-dockers.txt
 
-# install the packages
-RUN pip install -r requirements-dockers.txt
+# Final stage
+FROM python:3.12-slim
 
-# copy the app contents
+# Install lightgbm runtime dependency only
+RUN apt-get update && apt-get install -y libgomp1 && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Copy installed packages from builder
+COPY --from=builder /root/.local /root/.local
 COPY app.py ./
 COPY ./models/preprocessor.joblib ./models/preprocessor.joblib
 COPY ./scripts/data_clean_utils.py ./scripts/data_clean_utils.py
 COPY ./run_information.json ./
 
-# expose the port
+# Add user packages to PATH
+ENV PATH=/root/.local/bin:$PATH
+
 EXPOSE 8000
 
-# Run the file using command
-CMD [ "python","./app.py" ]
+CMD ["python", "./app.py"]
