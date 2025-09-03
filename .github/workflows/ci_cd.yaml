@@ -96,7 +96,7 @@ jobs:
             aws deploy create-deployment \
             --application-name deliverytimeprediction \
             --deployment-config-name CodeDeployDefault.OneAtATime \
-            --deployment-group-name deliverytimepredictiondeploymentgroup \
+            --deployment-group-name deliverytimepredictiondeployementgroup \
             --s3-location bucket=deployementbucketfordeliverytimepred,key=deployment.zip,bundleType=zip \
             --file-exists-behavior OVERWRITE \
             --region ap-south-1
