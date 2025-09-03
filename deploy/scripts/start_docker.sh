@@ -6,7 +6,7 @@ echo "Logging in to ECR..."
 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 769018977316.dkr.ecr.ap-south-1.amazonaws.com
 
 echo "Pulling Docker image..."
-docker pull 769018977316.dkr.ecr.ap-south-1.amazonaws.com/food_delivery_time_prediction
+docker pull 769018977316.dkr.ecr.ap-south-1.amazonaws.com/food_delivery_time_prediction:latest
 
 
 echo "Checking for existing container..."
